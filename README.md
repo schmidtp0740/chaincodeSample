@@ -1,5 +1,21 @@
 # To run chaincode in hyperledger
 
+## Prerequisites
+Install [hyperledger fabric](https://hyperledger-fabric.readthedocs.io/en/release/prereqs.html) and fabric samples
+
+```
+$ curl -sSL https://goo.gl/byy2Qj | bash -s 1.0.5
+$ git clone https://github.com/hyperledger/fabric-samples.git
+```
+
+set GOPATH and PATH
+```
+$ export GOPATH=$HOME/go
+$ export PATH=$PATH:$GOPATH/bin
+$ export PATH=<path to download location>/bin:$PATH
+```
+
+ 
 ## Building the chaincode
 ```
 $ go get -u --tags nopkcs11 github.com/hyperledger/fabric/core/chaincode/shim
@@ -26,7 +42,7 @@ $ CORE_PEER_ADDRESS=peer:7051 CORE_CHAINCODE_ID_NAME=mycc:0 ./sacc
 ## Start Terminal 3 - Use the Chaincode
 ```
 $ docker exec -it cli bash
-$ peer chaincode isntall -p chaincodedev/chaincode/sacc -n mycc -v 0
+$ peer chaincode isntall -p chaincode/sacc -n mycc -v 0
 $ peer chaincode instantiate -n mycc -v 0 -c '{"Args":["a","10"]}' -C myc
 ```
 
